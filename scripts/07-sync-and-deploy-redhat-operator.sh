@@ -51,10 +51,12 @@ oc adm catalog mirror \
 
 clear
 
+ICSP=$(find $HOME/registry/ -name imageContentSourcePolicy.yaml)
+CS=$(find $HOME/registry/ -name catalogSource.yaml)
 
-o create -f manifests-redhat-operator-index-*/imageContentSourcePolicy.yaml
+oc create -f $ICSP
 sleep 60
-oc create -f manifests-redhat-operator-index-1638093063/catalogSource.yaml
-leep 120
+oc create -f $CS
+sleep 120
 oc get po -n openshift-marketplace
 
